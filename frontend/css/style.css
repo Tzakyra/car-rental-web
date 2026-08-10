@@ -1,0 +1,999 @@
+/* Mörkt tema som standard */
+:root {
+    --primary-color: #74b2ff;
+    --secondary-color: #64748b;
+    --accent-color: #6b98f8; /* Används inte just nu */
+    --background-color: #1f1f1f;
+    --text-color: #95bae7;
+    --white: #ffffff;
+    --surface-color: #363636;
+    --gray-light: #5c5c5c;
+    --gray-medium: #a0a0a0;
+    --gray-dark: #666666;
+    --success-color: #226d2bec;
+    --warning-color: #f39c12;
+    --error-color: #f13e12;
+    --border-color: rgba(92, 92, 92, 0.247);
+    --border-radius: 8px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --transition: all 0.3s ease;
+}
+
+/* Ljust tema */
+body.theme--light {
+    --primary-color: #74b2ff;
+    --secondary-color: #64748b;
+    --accent-color: #6b98f8; /* Används inte just nu */
+    --background-color: #ffffff;
+    --text-color: #4a6b8a;
+    --white: #ffffff;
+    --surface-color: #eeeeee;
+    --gray-light: #919191;
+    --gray-medium: #666666;
+    --gray-dark: #333333;
+    --success-color: #1c6b3e;
+    --warning-color: #f39c12;
+    --error-color: #f13e12;
+    --border-color: rgba(220, 247, 255, 0.5);
+    --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ==================== GENERAL RESET ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* ==================== HEADER ==================== */
+.main-header {
+    background: linear-gradient(180deg, #0b0b0b, #0f0f0f);
+    color: var(--white);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 8px rgba(44, 124, 199, 0.06);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Behåll mörk header även i ljust läge */
+body.theme--light .main-header {
+    background: linear-gradient(180deg, #0b0b0b, #0f0f0f);
+    border-bottom: 1px solid rgba(92, 92, 92, 0.247);
+}
+
+.header-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Header Left - Auth */
+.header-left {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#username-display {
+    font-weight: 600;
+    color: var(--white);
+}
+
+/* Header Navigation */
+.header-nav {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-menu li {
+    position: relative;
+}
+
+.nav-link {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    padding: 0.5rem 1rem;
+    display: block;
+}
+
+.dropdown-chevron {
+    display: none;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+}
+
+.nav-link:hover {
+    background: color-mix(in srgb, var(--surface-color) 90%, transparent);
+    border-radius: 8px;
+}
+
+.nav-link.active {
+    background: var(--primary-color);
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(116, 178, 255, 0.6), 0 0 40px rgba(116, 178, 255, 0.3);
+}
+
+/* Dropdown Menu */
+.nav-dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--surface-color);
+    box-shadow: 6px 6px 24px rgba(2, 6, 23, 0.45);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    min-width: 200px;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin-top: 0;
+}
+
+.nav-dropdown:hover .dropdown-menu,
+.dropdown-menu:hover {
+    display: block;
+}
+
+.dropdown-menu li {
+    padding: 0;
+}
+
+.dropdown-menu a {
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    display: block;
+    transition: var(--transition);
+}
+
+.dropdown-menu a {
+    text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+    background: var(--primary-color);
+    color: #101010;
+    box-shadow: 0 0 5px rgba(116, 178, 255, 0.6), 0 0 40px rgba(116, 178, 255, 0.3);
+}
+
+/* Behåll mörk dropdown även i ljust läge */
+body.theme--light .dropdown-menu {
+    background-color: #363636;
+    border: 1px solid rgba(92, 92, 92, 0.247);
+}
+
+body.theme--light .dropdown-menu a {
+    color: #ffffff;
+}
+
+/* Header Right */
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Tema-växlingsknapp */
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    padding: 0;
+}
+
+.theme-toggle:hover {
+    background: var(--primary-color);
+    box-shadow: 0 0 10px rgba(116, 178, 255, 0.6);
+    transform: scale(1.1);
+}
+
+.theme-icon {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+/* ==================== KNAPPAR ==================== */
+.btn-primary,
+.btn-secondary,
+.btn-success,
+.btn-danger,
+.btn-warning {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+    font-size: 0.95rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #5a9ae6;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(116, 178, 255, 0.5);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    background-color: #576474;
+    box-shadow: 0 0 10px rgba(100, 116, 139, 0.4);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    color: var(--white);
+}
+
+.btn-success:hover {
+    background-color: #1e8e4f;
+    box-shadow: 0 0 10px rgba(34, 166, 93, 0.4);
+}
+
+.btn-danger {
+    background-color: var(--error-color);
+    color: var(--white);
+}
+
+.btn-danger:hover {
+    background-color: #d93910;
+    box-shadow: 0 0 10px rgba(241, 62, 18, 0.4);
+}
+
+.btn-warning {
+    background-color: var(--warning-color);
+    color: var(--white);
+}
+
+.btn-warning:hover {
+    background-color: #e67e22;
+}
+
+.btn-small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+}
+
+/* ==================== HUVUDINNEHÅLL ==================== */
+.main-content {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    min-height: calc(100vh - 300px);
+}
+
+/* ==================== AD FOOTER ==================== */
+.ad-footer {
+    background: linear-gradient(135deg, #0b0b0b, #1a2332);
+    color: var(--white);
+    padding: 3rem 2rem;
+    margin-top: 4rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.ad-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.ad-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.ad-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.ad-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.ad-item p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* ==================== MODAL ==================== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: var(--surface-color);
+    margin: 10% auto;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    max-width: 500px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--border-color);
+    position: relative;
+}
+
+.close {
+    color: var(--gray-medium);
+    float: right;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close:hover {
+    color: var(--error-color);
+}
+
+/* Vattenstämpel i modal */
+.modal-watermark {
+    position: absolute;
+    right: 35px;
+    bottom: 75px;
+    width: 80px;
+    height: auto;
+    opacity: 0.25;
+    z-index: 1;
+}
+
+/* ==================== FORMULÄR ==================== */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    background: var(--background-color);
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(116, 178, 255, 0.4);
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: block;
+}
+
+.help-text {
+    font-size: 0.85rem;
+    color: var(--gray-dark);
+    margin-top: 1rem;
+    text-align: center;
+}
+
+/* ==================== KORT (CARDS) ==================== */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.card {
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 20px rgba(116, 178, 255, 0.1);
+    border-color: var(--primary-color);
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background-color: var(--gray-light);
+}
+
+.card-image-container {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    background-color: var(--surface-color);
+}
+
+.card-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.card:hover .card-image-container img {
+    transform: scale(1.05);
+}
+
+.card-image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    pointer-events: none;
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+/* Specifik override för mörkt tema */
+body:not(.theme--light) .card-title {
+    color: var(--white);
+}
+
+.card-subtitle {
+    font-size: 1rem;
+    color: var(--gray-medium);
+    margin-bottom: 1rem;
+}
+
+.card-features {
+    list-style: none;
+    margin-bottom: 1rem;
+}
+
+.card-features li {
+    padding: 0.3rem 0;
+    color: var(--gray-medium);
+}
+
+.card-features li::before {
+    content: "✓ ";
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.card-price {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.card-footer {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* ==================== TABELLER ==================== */
+.table-container {
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+    overflow-x: auto;
+    margin-top: 2rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: linear-gradient(180deg, #0b0b0b, #0f0f0f);
+    color: var(--white);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+thead th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+}
+
+thead th:hover {
+    background: var(--primary-color);
+    color: #101010;
+}
+
+thead th.sortable::after {
+    content: " ▲▼";
+    color: var(--gray-light);
+    font-size: 0.7em;
+}
+
+thead th.sort-asc::after {
+    content: " ▲";
+    color: var(--white);
+}
+
+thead th.sort-desc::after {
+    content: " ▼";
+    color: var(--white);
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+tbody tr:hover {
+    background-color: rgba(116, 179, 255, 0.151);
+}
+
+tbody td {
+    padding: 1rem;
+}
+
+/* ==================== FILTERS OCH SORTERING ==================== */
+.filters-container {
+    background-color: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-group label {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.filter-group select {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+/* ==================== SIDSPECIFIKT ==================== */
+.page-header {
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+/* Specifik override för mörkt tema */
+body:not(.theme--light) .page-title {
+    color: var(--white);
+}
+
+.page-description {
+    font-size: 1.1rem;
+    color: var(--gray-dark);
+}
+
+/* Hem-sida */
+.hero-section {
+    background: linear-gradient(135deg, #0b0b0b, #1a2f42);
+    color: var(--white);
+    padding: 4rem 2rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 40px rgba(116, 178, 255, 0.1);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-section p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+}
+
+/* ==================== ADMIN SEKTION ==================== */
+.admin-section {
+    margin-bottom: 3rem;
+}
+
+.admin-section h2 {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+/* Specifik override för mörkt tema */
+body:not(.theme--light) .admin-section h2 {
+    color: var(--white);
+}
+
+.admin-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ==================== RESPONSIV ==================== */
+@media (max-width: 1024px) {
+    .header-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .header-left,
+    .header-nav,
+    .header-right {
+        justify-content: center;
+    }
+
+    .nav-menu {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+
+    .filters-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+
+    thead th,
+    tbody td {
+        padding: 0.5rem;
+    }
+}
+
+/* ==================== VERKTYG (UTILITIES) ==================== */
+.text-center {
+    text-align: center;
+}
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+.hidden {
+    display: none !important;
+}
+
+/* ==================== ETIKETTER (BADGES) ==================== */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.badge-success {
+    background-color: var(--success-color);
+    color: var(--white);
+}
+
+.badge-danger {
+    background-color: var(--error-color);
+    color: var(--white);
+}
+
+.badge-warning {
+    background-color: var(--warning-color);
+    color: var(--white);
+}
+
+.badge-info {
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+
+/* ==================== ALERT PANELER ==================== */
+.alert {
+    padding: 16px 20px;
+    border-radius: var(--border-radius);
+    margin: 16px 0;
+    border-left: 4px solid;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alert::before {
+    content: '';
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.alert-success {
+    background-color:rgba(4, 175, 118, 0.308);
+    border-color:var(--wg-success);
+	color:#3cb458;
+}
+
+.alert-success::before {
+    content: '✓';
+}
+
+.alert-error {
+    background-color: rgba(131, 32, 7, 0.664);
+    border-color: var(--error-color);
+    color:#f35945;
+}
+
+.alert-error::before {
+    content: '✕';
+}
+
+.alert-warning {
+    background-color: rgba(243, 157, 18, 0.425);
+    border-color: var(--warning-color);
+    color:#eb9a21;
+}
+
+.alert-warning::before {
+    content: '⚠';
+}
+
+.alert-info {
+    background-color: rgba(75, 129, 196, 0.418);
+    border-color: var(--primary-color);
+    color:#74a1f5;
+}
+
+.alert-info::before {
+    content: 'ℹ';
+}
+
+/* Alert container för att positionera alerts */
+.alert-container {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 10000;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.alert-dismissible {
+    position: relative;
+    padding-right: 45px;
+}
+
+.alert-close {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alert-close:hover {
+    opacity: 1;
+}
+
+/* Panel style (för större meddelanden) */
+.panel {
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin: 20px 0;
+    border-left: 4px solid;
+    background-color: var(--surface-color);
+}
+
+.panel-success {
+    border-color: var(--success-color);
+    background-color: rgba(4, 175, 118, 0.308);
+    color:#3cb458;
+}
+
+.panel-error {
+    border-color: var(--error-color);
+    background-color: rgba(194, 47, 11, 0.705);
+    color:#f35945;
+}
+
+.panel-warning {
+    border-color: var(--warning-color);
+    background-color: rgba(243, 157, 18, 0.247);
+    color:#eb9a21;
+}
+
+.panel-info {
+    border-color: var(--primary-color);
+    background-color: rgba(116, 179, 255, 0.253);
+    color:#74a1f5;
+}
+
+/* ==================== BOKNINGSPRISSAMMANFATTNING ==================== */
+#booking-price-summary {
+    padding: 15px;
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius);
+    margin: 10px 0;
+    display: none;
+}
+
+#booking-price-summary p {
+    margin: 5px 0;
+}
+
+#booking-price-summary p:last-child {
+    font-size: 1.2em;
+    color: var(--primary-color);
+}
+
+/* ==================== SCROLLBAR STYLING ==================== */
+/* Firefox */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--wg-gray-light) var(--wg-surface);
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--wg-bg);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--wg-gray-light);
+	border-radius: 5px;
+	border: 2px solid var(--wg-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--wg-gray-medium);
+}

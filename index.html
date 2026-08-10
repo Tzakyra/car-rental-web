@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WigellDrive - Biluthyrning</title>
+    <link rel="icon" type="image/png" href="frontend/icons/KoncernensLogga.png">
+    <link rel="stylesheet" href="frontend/css/style.css">
+    <link rel="stylesheet" href="frontend/css/mobile.css">
+</head>
+<body>
+    <!-- Header med logga och navigation -->
+    <header class="main-header">
+        <div class="header-container">
+            <!-- Vänster: Logga in/ut -->
+            <div class="header-left">
+                <div id="auth-section">
+                    <button id="login-btn" class="btn-primary">Logga in</button>
+                    <div id="user-info" class="user-info" style="display: none;">
+                        <span id="username-display"></span>
+                        <button id="logout-btn" class="btn-secondary">Logga ut</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="header-nav">
+                <ul class="nav-menu">
+                    <li><a href="#" data-page="home" class="nav-link active">Hem</a></li>
+                    <li class="nav-dropdown">
+                        <a href="#" data-page="cars" class="nav-link">
+                            Bilar
+                            <svg class="dropdown-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" data-page="cars">Alla bilar</a></li>
+                            <li><a href="#" data-page="cars-sport">Sportbilar</a></li>
+                            <li><a href="#" data-page="cars-electric">Elbilar</a></li>
+                            <li><a href="#" data-page="cars-family">Familjebilar</a></li>
+                            <li><a href="#" data-page="cars-cab">Cab</a></li>
+                            <li><a href="#" data-page="cars-kombi">Kombi</a></li>
+                            <li><a href="#" data-page="cars-halvkombi">Halvkombi</a></li>
+                            <li><a href="#" data-page="cars-sedan">Sedan</a></li>
+                            <li><a href="#" data-page="cars-suv">SUV</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-page="mybookings" class="nav-link" id="mybookings-link" style="display: none;">Mina bokningar</a></li>
+                    <li><a href="#" data-page="admin" class="nav-link" id="admin-link" style="display: none;">Admin</a></li>
+                    <li><a href="#" data-page="contact" class="nav-link">Kontakt</a></li>
+                </ul>
+            </nav>
+
+            <!-- Höger: Tema-växling -->
+            <div class="header-right">
+                <button id="theme-toggle" class="theme-toggle" title="Byt tema">
+                    <span class="theme-icon">☀️</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dynamiskt innehåll -->
+    <main id="main-content" class="main-content">
+
+    </main>
+
+    <!-- Reklamheader -->
+    <footer class="ad-footer">
+        <div class="ad-container">
+            <div class="ad-item">
+                <h3>Sommarkampanj!</h3>
+                <p>Hyr en bil i 7 dagar och betala för 5! Gäller t.o.m. 31 augusti.</p>
+            </div>
+            <div class="ad-item">
+                <h3>Premium försäkring</h3>
+                <p>Kör tryggt med vår omfattande försäkring. Från 99 kr/dag.</p>
+            </div>
+            <div class="ad-item">
+                <h3>Lojalitetsprogram</h3>
+                <p>Tjäna poäng på varje hyra och få rabatter! Bli medlem idag.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <img src="frontend/icons/KoncernLoggaTransparent.png" alt="Wigell Logo" class="modal-watermark">
+            <span class="close">&times;</span>
+            <h2 id="auth-modal-title">Logga in</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Användarnamn:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Lösenord:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div id="register-fields" style="display: none;">
+                    <div class="form-group">
+                        <label for="reg-firstName">Förnamn:</label>
+                        <input type="text" id="reg-firstName" name="firstName">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-lastName">Efternamn:</label>
+                        <input type="text" id="reg-lastName" name="lastName">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">E-post:</label>
+                        <input type="email" id="reg-email" name="email" title="E-posten saknar @">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-phone">Telefon:</label>
+                        <input type="tel" id="reg-phone" name="phone" pattern="[\+]?[0-9\s\-]+" title="Ange ett giltigt telefonnummer (endast siffror, mellanslag, bindestreck och + tillåtna)">
+                    </div>
+                </div>
+                <div id="login-error" class="error-message"></div>
+                <button type="submit" class="btn-primary" id="auth-submit-btn">Logga in</button>
+            </form>
+            <div style="text-align: left; margin-top: 15px;">
+                <button type="button" class="btn-secondary" id="toggle-register-btn" onclick="toggleRegisterMode()">Skapa konto</button>
+            </div>
+            <p class="help-text" id="demo-text">Demo: Användare (jerry/pass) eller Admin (wigell/pass)</p>
+        </div>
+    </div>
+
+    <script src="frontend/scripts/app.js"></script>
+</body>
+</html>

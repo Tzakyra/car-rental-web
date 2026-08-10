@@ -1,0 +1,596 @@
+/* ==================== MOBILE & TABLET RESPONSIVENESS ==================== */
+
+/* ==================== TABLET (iPad & liknande) - 768px till 1024px ==================== */
+@media (max-width: 1024px) {
+    /* Header anpassning */
+    .header-container {
+        grid-template-columns: auto 1fr auto;
+        gap: 1rem;
+        padding: 0.5rem 0;
+    }
+
+    .nav-menu {
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .nav-link {
+        padding: 0.4rem 0.8rem;
+    }
+
+    /* Cards */
+    .cards-container {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+
+    /* Hero section */
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-section p {
+        font-size: 1.1rem;
+    }
+
+    /* Page title */
+    .page-title {
+        font-size: 2rem;
+    }
+
+    /* Table scrollbar för tablets */
+    .table-container {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 600px;
+    }
+
+    /* Admin actions */
+    .admin-actions {
+        flex-wrap: wrap;
+    }
+
+    /* Modal */
+    .modal-content {
+        margin: 15% auto;
+        max-width: 90%;
+    }
+}
+
+/* ==================== MOBIL (Smartphones) - under 768px ==================== */
+@media (max-width: 768px) {
+    /* Root font size anpassning */
+    html {
+        font-size: 14px;
+    }
+
+    /* ==================== HEADER ==================== */
+    .main-header {
+        padding: 0.5rem 1rem;
+    }
+
+    .header-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 0.5rem;
+    }
+
+    .header-left {
+        order: 1;
+        grid-column: 1;
+        grid-row: 1;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .header-right {
+        order: 2;
+        grid-column: 2;
+        grid-row: 1;
+        justify-content: flex-end;
+    }
+
+    .header-nav {
+        order: 3;
+        grid-column: 1 / -1;
+        grid-row: 2;
+        width: 100%;
+    }
+
+    .nav-menu {
+        flex-direction: row;
+        width: 100%;
+        gap: 0.5rem;
+        align-items: stretch;
+        justify-content: center;
+    }
+
+    .nav-menu li {
+        width: auto;
+        flex: 0 1 auto;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-menu > li:not(.nav-dropdown) {
+        flex: 0 1 auto;
+    }
+
+    .nav-dropdown {
+        flex: 0 1 auto;
+    }
+
+    .nav-link {
+        text-align: center;
+        width: auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.95rem;
+        white-space: nowrap;
+        height: 40px;
+        line-height: 1.2;
+    }
+
+    /* Chevron synlig på mobil */
+    .dropdown-chevron {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        margin-left: 0.3rem;
+        flex-shrink: 0;
+        transition: transform 0.3s ease;
+        opacity: 0.7;
+    }
+
+    .nav-dropdown.open .dropdown-chevron {
+        transform: rotate(180deg);
+    }
+
+    /* Dropdown meny mobil */
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: none;
+        background-color: rgba(54, 54, 54, 0.98);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--border-color);
+        border-radius: 0 0 8px 8px;
+        margin-top: 0.25rem;
+        z-index: 100;
+    }
+
+    .nav-dropdown.open .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu li {
+        width: 100%;
+    }
+
+    .dropdown-menu a {
+        padding: 0.6rem 1rem;
+        text-align: center;
+        font-size: 0.9rem;
+        width: 100%;
+    }
+
+    /* Användarinfo mobil */
+    .user-info {
+        flex-direction: row;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    #username-display {
+        font-size: 0.9rem;
+    }
+
+    #logout-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    #login-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .theme-toggle {
+        width: 42px;
+        height: 42px;
+    }
+
+    /* ==================== HUVUDINNEHÅLL ==================== */
+    .main-content {
+        padding: 0 1rem;
+        margin: 1rem auto;
+    }
+
+    /* ==================== HERO SEKTION ==================== */
+    .hero-section {
+        padding: 2rem 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-section h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .hero-section p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* ==================== SIDHUVUD ==================== */
+    .page-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-description {
+        font-size: 1rem;
+    }
+
+    /* ==================== KORT (CARDS) ==================== */
+    .cards-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .card {
+        max-width: 100%;
+    }
+
+    .card-content {
+        padding: 1.25rem;
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+    }
+
+    .card-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .card-price {
+        font-size: 1.4rem;
+    }
+
+    .card-footer {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .card-footer button {
+        width: 100%;
+    }
+
+    /* ==================== FILTER ==================== */
+    .filters-container {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-group {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .filter-group label {
+        margin-bottom: 0.5rem;
+    }
+
+    .filter-group select {
+        width: 100%;
+    }
+
+    /* ==================== TABELLER ==================== */
+    .table-container {
+        margin-top: 1.5rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        font-size: 0.85rem;
+        min-width: 600px;
+    }
+
+    thead th {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    tbody td {
+        padding: 0.75rem 0.5rem;
+    }
+
+    /* Stacka knappar i table cellerna */
+    tbody td button {
+        display: block;
+        width: 100%;
+        margin-bottom: 0.25rem;
+    }
+
+    tbody td button:last-child {
+        margin-bottom: 0;
+    }
+
+    /* ==================== FORMULÄR ==================== */
+    .form-group {
+        margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+        font-size: 0.95rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.65rem;
+        font-size: 16px; /* Förhindrar zoom på iOS */
+    }
+
+    /* ==================== KNAPPAR ==================== */
+    .btn-primary,
+    .btn-secondary,
+    .btn-success,
+    .btn-danger,
+    .btn-warning {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+    }
+
+    /* Full-bredd knappar endast i specifika kontexter */
+    .card-footer .btn-primary,
+    .card-footer .btn-secondary,
+    .admin-actions .btn-primary,
+    .admin-actions .btn-secondary,
+    .admin-actions .btn-success,
+    .form-group .btn-primary,
+    .modal-content .btn-primary,
+    .modal-content .btn-secondary {
+        width: 100%;
+    }
+
+    .btn-small {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    /* ==================== MODAL ==================== */
+    .modal-content {
+        margin: 5% auto;
+        padding: 1.5rem;
+        max-width: 95%;
+        width: 100%;
+    }
+
+    .modal-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .close {
+        font-size: 1.8rem;
+    }
+
+    /* Vattenstämpel koncernlogga */
+    @media (max-width: 768px) {
+    .modal-watermark {
+        right: 55px;
+        top: 15px;
+        bottom: auto;
+        width: 50px;
+    }
+}
+
+    /* ==================== ADMIN SEKTIONER ==================== */
+    .admin-section {
+        margin-bottom: 2rem;
+    }
+
+    .admin-section h2 {
+        font-size: 1.6rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .admin-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .admin-actions button {
+        width: 100%;
+    }
+
+    /* ==================== AD FOOTER ==================== */
+    .ad-footer {
+        padding: 2rem 1rem;
+        margin-top: 3rem;
+    }
+
+    .ad-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .ad-item {
+        padding: 1.5rem;
+    }
+
+    .ad-item h3 {
+        font-size: 1.3rem;
+    }
+
+    .ad-item p {
+        font-size: 0.95rem;
+    }
+
+    /* ==================== ETIKETTER (BADGES) ==================== */
+    .badge {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.6rem;
+    }
+
+    /* ==================== VERKTYG (UTILITIES) MOBIL ==================== */
+    .text-center {
+        text-align: center;
+    }
+
+    /* Beröringsvänligt avstånd */
+    .mt-1 { margin-top: 0.5rem; }
+    .mt-2 { margin-top: 1rem; }
+    .mt-3 { margin-top: 1.5rem; }
+    .mt-4 { margin-top: 2rem; }
+
+    .mb-1 { margin-bottom: 0.5rem; }
+    .mb-2 { margin-bottom: 1rem; }
+    .mb-3 { margin-bottom: 1.5rem; }
+    .mb-4 { margin-bottom: 2rem; }
+}
+
+/* ==================== EXTRA LITEN MOBIL - under 480px ==================== */
+@media (max-width: 480px) {
+    /* Extra små justeringar */
+    .hero-section h1 {
+        font-size: 1.5rem;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+    }
+
+    .card-price {
+        font-size: 1.3rem;
+    }
+
+    /* Kompaktare padding */
+    .main-content {
+        padding: 0 0.75rem;
+    }
+
+    .card-content {
+        padding: 1rem;
+    }
+
+    /* Mindre knappar för små skärmar */
+    .btn-primary,
+    .btn-secondary,
+    .btn-success,
+    .btn-danger,
+    .btn-warning {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.95rem;
+    }
+
+    /* Modal på små skärmar */
+    .modal-content {
+        padding: 1rem;
+    }
+
+    /* Table extra kompakt */
+    table {
+        font-size: 0.8rem;
+    }
+
+    thead th,
+    tbody td {
+        padding: 0.5rem 0.25rem;
+    }
+}
+
+/* ==================== LANDSCAPE MODE (Liggande läge) ==================== */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero-section {
+        padding: 1.5rem 1rem;
+    }
+
+    .hero-section h1 {
+        font-size: 1.6rem;
+    }
+
+    .modal-content {
+        margin: 2% auto;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .nav-menu {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-menu li {
+        width: auto;
+    }
+}
+
+/* ==================== TOUCH OPTIMIMISERING ==================== */
+@media (hover: none) and (pointer: coarse) {
+    /* Större klickytor för touch */
+    .nav-link {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    button,
+    .btn-primary,
+    .btn-secondary,
+    .btn-success,
+    .btn-danger,
+    .btn-warning {
+        min-height: 44px;
+    }
+
+    /* Ta bort hover-effekter på touch-enheter */
+    .card:hover {
+        transform: none;
+    }
+
+    .nav-link:hover {
+        background: none;
+    }
+
+    /* Touch-friendly tables */
+    tbody tr:active {
+        background-color: rgba(116, 178, 255, 0.1);
+    }
+}
+
+/* ==================== TILLGÄNGLIGHET ==================== */
+/* Respekterar användarens inställning för minskad rörelse i OS:et.
+   Minskar animationer och övergångar till ett minimum för personer som
+   kan må illa av rörelser på skärmen. WCAG 2.1 Level AA standard. */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
